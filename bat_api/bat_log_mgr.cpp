@@ -12,8 +12,4 @@ namespace BAT
 	{
 		m_LogFile << msg << '\n';
 	}
-	void CLogManager::CreateSingleton()
-	{
-		std::cout << "Start logmgr" << std::endl;
-	}
 }

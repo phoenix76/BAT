@@ -82,6 +82,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="bat_cstrings.h" />
+    <ClInclude Include="bat_file_system.h" />
     <ClInclude Include="bat_interfaces.h" />
     <ClInclude Include="bat_log_mgr.h" />
     <ClInclude Include="bat_memory.h" />

@@ -30,6 +30,9 @@
     <ClInclude Include="bat_interfaces.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="bat_file_system.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bat_cstrings.cpp">

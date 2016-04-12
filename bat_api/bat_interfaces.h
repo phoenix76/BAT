@@ -21,12 +21,6 @@ namespace BAT
 		INonCopyable(const INonCopyable& other);
 		const INonCopyable& operator=(const INonCopyable& other);
 	};
-
-	class _BAT_API_ IManager
-	{
-	public:
-		virtual void CreateSingleton() = 0;
-	};
 }
 
 #endif

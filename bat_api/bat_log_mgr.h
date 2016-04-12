@@ -10,21 +10,16 @@
 namespace BAT
 {
 
-	class _BAT_API_ CLogManager : public CSingleton<CLogManager>, IManager
+	class _BAT_API_ CLogManager
 	{
-		friend class CSingleton<CLogManager>;
-
 	public:
 		CLogManager();
 		void Log(string msg);
-		void CreateSingleton() override;
 
 	private:
 		std::ofstream m_LogFile;
 
 	};
-
-	_BAT_API_ CLogManager* ILogManager = &CLogManager::GetInstance();
 }
 
 #endif

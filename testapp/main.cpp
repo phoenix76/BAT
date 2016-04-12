@@ -1,13 +1,12 @@
 #include <iostream>
-#include <bat_log_mgr.h>
+#include "game_singletons.h"
 
 using namespace BAT;
 
 int main()
 {
-	ILogManager->CreateSingleton();
-	ILogManager->CreateSingleton();
-	ILogManager->Log("Log() func");
+	ILogManager.Log("my func");
+	ILogManager.Log("");
 	std::cin.get();
 	return 0;
 }

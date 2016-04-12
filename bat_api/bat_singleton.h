@@ -1,23 +1,23 @@
 #ifndef _BAT_SINGLETON_H_
 #define _BAT_SINGLETON_H_
 
-#include "bat_memory.h"
 #include "bat_interfaces.h"
 
 namespace BAT
 {
-	template <typename T>
-	class _BAT_API_ CSingleton : INonCopyable
+	
+	template<typename T>
+	class _BAT_API_ ISingleton : INonCopyable
 	{
 	public:
-		static T& GetInstance()
+		static T& Instance()
 		{
-			static T _instance;
-			return _instance;
+			static T instance;
+			return instance;
 		}
-
-	protected:
-		explicit CSingleton<T>() {}
+	private:
+		ISingleton() {}
 	};
+	
 }
 #endif
