@@ -1,11 +1,9 @@
 #ifndef _BAT_INTERFACES_H_
 #define _BAT_INTERFACES_H_
 
-#include "bat_platform.h"
-
 namespace BAT
 {
-	class _BAT_API_ INonCopyable
+	class INonCopyable
 	{
 	protected:
 		INonCopyable()

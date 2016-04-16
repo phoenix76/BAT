@@ -5,9 +5,9 @@
 
 namespace BAT
 {
-	
+
 	template<typename T>
-	class _BAT_API_ ISingleton : INonCopyable
+	class ISingleton : INonCopyable
 	{
 	public:
 		static T& Instance()
@@ -16,8 +16,8 @@ namespace BAT
 			return instance;
 		}
 	private:
-		ISingleton() {}
+		explicit ISingleton<T>() { }
 	};
-	
+
 }
 #endif

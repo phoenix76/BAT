@@ -13,7 +13,4 @@ typedef unsigned short			uint16;
 typedef unsigned int			uint32;
 typedef unsigned long long		uint64;
 
-typedef std::string				string;
-typedef std::wstring			wstring;
-
 #endif

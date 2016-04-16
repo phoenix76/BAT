@@ -1,0 +1,6 @@
+#DIRECTORIES
+LogDir=logs/
+SaveDir=saves/
+KeyMapDir=saves/
+#FILENAMES
+KeyConfig=keymap.txt
