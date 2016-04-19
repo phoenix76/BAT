@@ -13,6 +13,9 @@
     <Filter Include="test">
       <UniqueIdentifier>{20e0a7b3-764f-48d2-9b92-1f8be11ba622}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Window">
+      <UniqueIdentifier>{94f3ab12-eedb-4c51-87c0-79426eddf117}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\bat_singleton.h">
@@ -42,6 +45,9 @@
     <ClInclude Include="include\bat_engine.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="include\bat_window_api.h">
+      <Filter>Window</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\bat_log_mgr.cpp">
@@ -55,6 +61,9 @@
     </ClCompile>
     <ClCompile Include="source\bat_engine.cpp">
       <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="source\bat_window_api.cpp">
+      <Filter>Window</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

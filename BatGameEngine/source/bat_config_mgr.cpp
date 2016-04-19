@@ -4,6 +4,7 @@
 
 namespace BAT
 {
+
 	CConfigManager::CConfigManager()
 	{
 		std::ifstream cfile("config.txt");

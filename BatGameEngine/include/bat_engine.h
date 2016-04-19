@@ -7,6 +7,7 @@
 #include <bat_log_mgr.h>
 #include <bat_memory.h>
 #include <bat_config_mgr.h>
+#include <bat_window_api.h>
 
 namespace BAT
 {
@@ -15,10 +16,11 @@ namespace BAT
 	{
 	public:
 		CBatCore();
-
+		void Run();
 	private:
 		CConfigManager* sConfig;
 		CLogManager* sLog;
+		CWindow* sWindow;
 	};
 
 }
