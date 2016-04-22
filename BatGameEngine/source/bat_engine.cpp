@@ -2,19 +2,21 @@
 
 namespace BAT
 {
-	CBatCore::CBatCore() : sConfig(&(ISingleton<CConfigManager>::Instance())), sLog(&(ISingleton<CLogManager>::Instance())), sWindow(&(ISingleton<CWindow>::Instance()))
+	CBatCore::CBatCore() : /*sLog(&(ISingleton<CLogManager>::Instance())),*/ sWindow(&(ISingleton<CWindow>::Instance()))
 	{
-		sLog->LogToChannel("system", "engine class %f", 1.0f);
+		/*sLog->LogToChannel("system", "engine class %f", 1.0f);*/
 	}
 	void CBatCore::Run()
 	{
-		sWindow->SetResolution(800U, 600U);
-		sWindow->SetScreenMode(false);
-		sWindow->Initialize();
-		while(sWindow->IsRun())
+		bool result = false;
+		result = sWindow->InitializeWindow(L"Engine", LoadCursor(NULL, IDC_ARROW), WC_CREATE_WINDOW_CONFIG_2);
+		if(result)
 		{
-			sWindow->ProcessMessage();
+			while(sWindow->IsRun())
+			{
+				sWindow->ProcessMessage();
+			}
+			sWindow->Shutdown();
 		}
-		sWindow->Shutdown();
 	}
 }

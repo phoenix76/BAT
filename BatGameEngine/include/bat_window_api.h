@@ -8,39 +8,38 @@
 
 namespace BAT
 {
-	enum EMakeWindowResult
-	{
-		MAKE_WINDOW_SUCCEDED = 0,
-		MAKE_WINDOW_ERROR_REGISTER_CLASS,
-		MAKE_WINDOW_ERROR_CREATE_WINDOW,
-	};
 
-	enum EWindowMessage
+	enum ECreateWindowConfiguration
 	{
-		MESSAGE_NONE = 0,
-
+		WC_CREATE_WINDOW_CONFIG_1,
+		WC_CREATE_WINDOW_CONFIG_2,
+		WC_CREATE_WINDOW_CONFIG_3,
+		WC_CREATE_WINDOW_FULLSCREEN,
+		WC_CREATE_WINDOW_WITH_USER_SETTINGS
 	};
 
 	class CWindow
 	{
 	public:
-		CWindow(const std::wstring& name = L"BAT Engine");
-		/*-----------------------------------------------------
-		Методы для установки первоначальных параметров
-		------------------------------------------------------*/
+		CWindow();
+		/*Устанавливает заголовок окна, курсор, разрешение, опционально ширина и высота, если указана пользовательская конфигурация*/
+		bool InitializeWindow(const std::wstring& windowName, HCURSOR cursor, ECreateWindowConfiguration config, uint32 width = 0U, uint32 height = 0U);
 
-		void SetResolution(uint32 width, uint32 height);
-		void SetScreenMode(bool fulllscreen);
-
-		/*Создает окно с заданными ранее параметрами.
-		Возвращает код ошибки в случае неудачи, либо CREATE_WINDOW_SUSSEDED в случае успеха.*/
-		EMakeWindowResult Initialize();
-
-		/*Получает сообщения, если они есть. Возвращает код сообщения в виде EWindowMessage если сообщение есть.
-		Если нет, возвращает EWindowMessage::MESSAGE_NONE*/
-		UINT ProcessMessage();
+		/*Получает сообщения, если они есть. Возвращает MSG для обработки.*/
+		MSG ProcessMessage();
 
 		bool IsRun() const;
+
+		void ChangeCursor(HCURSOR newCursor);
+
+		HWND& GetHWND();
+
+		uint8 GetWidth() const;
+		uint8 GetHeight() const;
+		uint8 GetXPos() const;
+		uint8 GetYPos() const;
+
+		POINT GetMouseCoordinates() const;
 
 		LRESULT CALLBACK MessageHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
@@ -60,7 +59,8 @@ namespace BAT
 		HCURSOR m_HCursor;
 
 		bool m_IsRunWindow;
-		bool m_Fullscreen;
+		bool m_Fullscreen = false;
+		bool m_VisibleCursor;
 
 		uint32 m_WindowWidth;
 		uint32 m_WindowHeight;
@@ -73,7 +73,6 @@ namespace BAT
 		uint32 m_CurPosY;
 
 		RECT m_WindowRect;
-		RECT m_ClientRect;
 	};
 
 	static CWindow* pWindow;

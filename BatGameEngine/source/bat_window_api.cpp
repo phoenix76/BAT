@@ -2,63 +2,94 @@
 
 namespace BAT
 {
-	CWindow::CWindow(const std::wstring& name)
-	{
-		m_ClassName = name;
-		pWindow = this;
-	}
-
-	void CWindow::SetResolution(uint32 width, uint32 height)
-	{
-		m_WindowWidth = width;
-		m_WindowHeight = height;
-	}
-	void CWindow::SetScreenMode(bool fullscreen)
-	{
-		m_Fullscreen = fullscreen;
-	}
-	EMakeWindowResult CWindow::Initialize()
+	CWindow::CWindow() { pWindow = this; }
+	bool CWindow::InitializeWindow(const std::wstring& windowName, HCURSOR cursor, ECreateWindowConfiguration config, uint32 width, uint32 height)
 	{
 		m_HInstance = GetModuleHandle(NULL);
-		if(!m_Fullscreen)
+		m_ClassName = windowName;
+		m_HCursor = cursor;
+		if(config == WC_CREATE_WINDOW_CONFIG_1)
+		{
+			m_WindowWidth = 640U;
+			m_WindowHeight = 480U;
+		}
+		else if(config == WC_CREATE_WINDOW_CONFIG_2)
+		{
+			m_WindowWidth = 800U;
+			m_WindowHeight = 600U;
+		}
+		else if(config == WC_CREATE_WINDOW_CONFIG_3)
+		{
+			m_WindowWidth = 1920U;
+			m_WindowHeight = 1080U;
+		}
+		else if(config == WC_CREATE_WINDOW_WITH_USER_SETTINGS)
+		{
+			m_WindowWidth = width;
+			m_WindowHeight = height;
+		}
+		else if(config == WC_CREATE_WINDOW_FULLSCREEN)
+		{
+			m_WindowWidth = GetSystemMetrics(SM_CXSCREEN);
+			m_WindowHeight = GetSystemMetrics(SM_CYSCREEN);
+			m_WindowPosX = m_WindowPosY = 0U;
+			m_Fullscreen = true;
+		}
+		if(config != WC_CREATE_WINDOW_FULLSCREEN)
 		{
 			m_WindowPosX = (GetSystemMetrics(SM_CXSCREEN) - m_WindowWidth) / 2;
 			m_WindowPosY = (GetSystemMetrics(SM_CYSCREEN) - m_WindowHeight) / 2;
 		}
-		else
-		{
-			m_WindowWidth = m_ScreenWidth = GetSystemMetrics(SM_CXSCREEN);
-			m_WindowHeight = m_ScreenHeight = GetSystemMetrics(SM_CYSCREEN);
-			m_WindowPosX = m_WindowPosY = 0;
-		}
-		m_HCursor = LoadCursor(NULL, IDC_ARROW);
 
 		if(FAILED(m_RegisterWindowClass()))
-			return MAKE_WINDOW_ERROR_REGISTER_CLASS;
+			return false;
 		if(FAILED(m_CreateAppWindow()))
-			return MAKE_WINDOW_ERROR_CREATE_WINDOW;
+			return false;
 
-		return MAKE_WINDOW_SUCCEDED;
+		SetCursor(m_HCursor);
+		return true;
 	}
-	UINT CWindow::ProcessMessage()
+	
+	MSG CWindow::ProcessMessage()
 	{
 		MSG msg;
 		if(PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 		{
+			
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
-		return msg.message;
+		return msg;
 	}
 	bool CWindow::IsRun() const
 	{
 		return m_IsRunWindow;
+	}
+	void CWindow::ChangeCursor(HCURSOR cursor)
+	{
+		m_HCursor = cursor;
+		SetCursor(m_HCursor);
+	}
+
+	HWND& CWindow::GetHWND()			{ return m_HWnd; }
+	uint8 CWindow::GetWidth() const		{ return m_WindowWidth; }
+	uint8 CWindow::GetHeight() const	{ return m_WindowHeight; }
+	uint8 CWindow::GetXPos() const		{ return m_WindowPosX; }
+	uint8 CWindow::GetYPos() const		{ return m_WindowPosY; }
+
+	POINT CWindow::GetMouseCoordinates() const
+	{
+		POINT pt;
+		pt.x = m_CurPosX;
+		pt.y = m_CurPosY;
+		return pt;
 	}
 	LRESULT CALLBACK CWindow::MessageHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	{
 		switch(msg)
 		{
 		case WM_CLOSE:
+			MessageBox(NULL, L"Msg", L"msg", MB_OK);
 			m_IsRunWindow = false;
 			return 0;
 
@@ -69,11 +100,14 @@ namespace BAT
 			return 0;
 
 		case WM_MOUSEMOVE:
-			POINT pt;
-			GetCursorPos(&pt);
-			ScreenToClient(m_HWnd, &pt);
-			m_CurPosX = pt.x;
-			m_CurPosY = pt.y;
+			m_UpdateCursorCoordinates();
+			return 0;
+
+		case WM_MOVE:
+		case WM_SIZE:
+			GetClientRect(m_HWnd, &m_WindowRect);
+			m_WindowPosX = m_WindowRect.left;
+			m_WindowPosY = m_WindowRect.top;
 			return 0;
 
 		default:
@@ -83,6 +117,7 @@ namespace BAT
 	}
 	void CWindow::Shutdown()
 	{
+		PostQuitMessage(0);
 		if(m_Fullscreen)
 			ChangeDisplaySettings(NULL, 0);
 		DestroyWindow(m_HWnd);
@@ -120,16 +155,16 @@ namespace BAT
 			dmScreenSettings.dmFields = DM_BITSPERPEL | DM_PELSWIDTH | DM_PELSHEIGHT;
 			ChangeDisplaySettings(&dmScreenSettings, CDS_FULLSCREEN);
 			m_HWnd = CreateWindowEx(WS_EX_APPWINDOW, m_ClassName.c_str(), m_ClassName.c_str(), WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_POPUP,
-				m_WindowPosX, m_WindowPosY, m_ScreenWidth, m_ScreenHeight, NULL, NULL, m_HInstance, NULL);
+				m_WindowPosX, m_WindowPosY, m_WindowWidth, m_WindowHeight, NULL, NULL, m_HInstance, NULL);
 			if(m_HWnd)
 			{
-				//FOR TEST ONLY!!!
-				SetCursor(m_HCursor);
 				ShowWindow(m_HWnd, SW_SHOW);
 				SetForegroundWindow(m_HWnd);
 				SetFocus(m_HWnd);
 				m_IsRunWindow = true;
-				m_SetWindowRects();
+				GetWindowRect(m_HWnd, &m_WindowRect);
+				m_UpdateCursorCoordinates();
+				m_VisibleCursor = true;
 				return S_OK;
 			}
 		}
@@ -139,26 +174,24 @@ namespace BAT
 				m_WindowWidth, m_WindowHeight, NULL, NULL, m_HInstance, NULL);
 			if(m_HWnd)
 			{
-				//FOR TEST ONLY!!!
-				SetCursor(m_HCursor);
 				ShowWindow(m_HWnd, SW_SHOW);
 				SetForegroundWindow(m_HWnd);
 				SetFocus(m_HWnd);
 				m_IsRunWindow = true;
-				m_SetWindowRects();
+				GetWindowRect(m_HWnd, &m_WindowRect);
+				m_UpdateCursorCoordinates();
+				m_VisibleCursor = true;
 				return S_OK;
 			}
 		}
 		return E_FAIL;
 	}
-	void CWindow::m_SetWindowRects()
-	{
-		GetWindowRect(m_HWnd, &m_WindowRect);
-		GetClientRect(m_HWnd, &m_ClientRect);
-	}
 	void CWindow::m_UpdateCursorCoordinates()
 	{
-		
+		POINT pt;
+		GetCursorPos(&pt);
+		m_CurPosX = pt.x - m_WindowPosX;
+		m_CurPosY = pt.y - m_WindowPosY;
 	}
 
 	static LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)

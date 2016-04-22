@@ -6,7 +6,6 @@
 #include <bat_singleton.h>
 #include <bat_log_mgr.h>
 #include <bat_memory.h>
-#include <bat_config_mgr.h>
 #include <bat_window_api.h>
 
 namespace BAT
@@ -18,8 +17,8 @@ namespace BAT
 		CBatCore();
 		void Run();
 	private:
-		CConfigManager* sConfig;
-		CLogManager* sLog;
+
+		//CLogManager* sLog;
 		CWindow* sWindow;
 	};
 
