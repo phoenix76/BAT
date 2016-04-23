@@ -7,12 +7,12 @@
 
 namespace BAT
 {
-	CLogManager::CLogManager()
+	CLogger::CLogger()
 	{
-		m_FilePath = ISingleton<CConfigManager>::Instance().GetConfigParameter(CONFIG_PARAM_LOG_DIR);
+		m_FilePath = "logs/";
 		m_LogChannelsList.push_back(SLogChannel("base_system_log.txt", "system", m_FilePath));
 	}
-	void CLogManager::AddLogChannel(const std::string& channelName, const std::string& logFilename)
+	void CLogger::AddLogChannel(const std::string& channelName, const std::string& logFilename)
 	{
 		for(auto it = m_LogChannelsList.begin(); it != m_LogChannelsList.end(); it++)
 		{
@@ -21,7 +21,7 @@ namespace BAT
 		}
 		m_LogChannelsList.push_back(SLogChannel(logFilename, channelName, m_FilePath));
 	} 
-	void CLogManager::LogToChannel(const std::string& channelName, const std::string& i)
+	void CLogger::RLog(const std::string& channelName, const std::string& i)
 	{
 		for(auto it = m_LogChannelsList.begin(); it != m_LogChannelsList.end(); it++)
 		{
@@ -33,7 +33,7 @@ namespace BAT
 			}
 		}
 	}
-	void CLogManager::DebugLogToChannel(const std::string& channelName, const std::string& i)
+	void CLogger::DebugLog(const std::string& channelName, const std::string& i)
 	{
 #ifdef _DEBUG
 		for(auto it = m_LogChannelsList.begin(); it != m_LogChannelsList.end(); it++)
@@ -47,7 +47,7 @@ namespace BAT
 		}
 #endif
 	}
-	void CLogManager::LogToChannel(const std::string& channelName, const char* msg, ...)
+	void CLogger::RLog(const std::string& channelName, const char* msg, ...)
 	{
 		for(auto it = m_LogChannelsList.begin(); it != m_LogChannelsList.end(); it++)
 		{	
@@ -66,7 +66,7 @@ namespace BAT
 			}
 		}	
 	}
-	void CLogManager::DebugLogToChannel(const std::string& channelName, const char* msg, ...)
+	void CLogger::DebugLog(const std::string& channelName, const char* msg, ...)
 	{
 #ifdef _DEBUG
 		for(auto it = m_LogChannelsList.begin(); it != m_LogChannelsList.end(); it++)
@@ -87,7 +87,7 @@ namespace BAT
 		}
 #endif
 	}
-	CLogManager::~CLogManager()
+	CLogger::~CLogger()
 	{
 		for(auto it = m_LogChannelsList.begin(); it != m_LogChannelsList.end(); it++)
 			it->Destroy();

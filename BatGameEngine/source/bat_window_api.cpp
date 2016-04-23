@@ -71,6 +71,17 @@ namespace BAT
 		SetCursor(m_HCursor);
 	}
 
+	void CWindow::ShowAppCursor()
+	{
+		while(ShowCursor(TRUE) < 0);
+		m_VisibleCursor = true;
+	}
+	void CWindow::HideAppCursor()
+	{
+		while(ShowCursor(FALSE) >= 0);
+		m_VisibleCursor = false;
+	}
+
 	HWND& CWindow::GetHWND()			{ return m_HWnd; }
 	uint8 CWindow::GetWidth() const		{ return m_WindowWidth; }
 	uint8 CWindow::GetHeight() const	{ return m_WindowHeight; }
@@ -84,23 +95,24 @@ namespace BAT
 		pt.y = m_CurPosY;
 		return pt;
 	}
+
+	void CWindow::SystemAlert(const wchar_t* msg, const wchar_t* head)
+	{
+		MessageBox(NULL, msg, head, MB_OK);
+	}
+
 	LRESULT CALLBACK CWindow::MessageHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	{
 		switch(msg)
 		{
 		case WM_CLOSE:
-			MessageBox(NULL, L"Msg", L"msg", MB_OK);
 			m_IsRunWindow = false;
-			return 0;
-
-		case WM_KEYDOWN:
-			if(wParam == VK_ESCAPE)
-				m_IsRunWindow = false;
-			MessageBox(NULL, L"Msg", L"msg", MB_OK);
 			return 0;
 
 		case WM_MOUSEMOVE:
 			m_UpdateCursorCoordinates();
+			if(m_HCursor != GetCursor())
+				SetCursor(m_HCursor);
 			return 0;
 
 		case WM_MOVE:
@@ -114,6 +126,10 @@ namespace BAT
 			return DefWindowProc(hWnd, msg, wParam, lParam);
 		}
 		
+	}
+	void CWindow::Stop()
+	{
+		m_IsRunWindow = false;
 	}
 	void CWindow::Shutdown()
 	{

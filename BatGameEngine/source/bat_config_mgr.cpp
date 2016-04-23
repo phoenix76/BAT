@@ -5,55 +5,46 @@
 namespace BAT
 {
 
-	CConfigManager::CConfigManager()
+	CConfig::CConfig()
 	{
-		std::ifstream cfile("config.txt");
-		if(!cfile.is_open())
-			MessageBox(NULL, L"Error open cfg file!", L"Error", MB_OK);
-		std::string temp = "";
-		do
+	}
+	bool CConfig::Initialize()
+	{
+		std::ifstream m_InFile("config.txt");
+		if(!m_InFile.is_open())
 		{
-			std::getline(cfile, temp);
-			if(temp == "#DIRECTORIES")
-			{
-				while(cfile.get() != '=');
-				std::getline(cfile, m_LogDirParam);
-				while(cfile.get() != '=');
-				std::getline(cfile, m_SavesDirParam);
-				while(cfile.get() != '=');
-				std::getline(cfile, m_KeyMapDirParam);
-			}
-			else if(temp == "#FILENAMES")
-			{
-				while(cfile.get() != '=');
-				std::getline(cfile, m_KeyMapFileNameParam);
-			}
-		} while(!cfile.eof());
-		cfile.close();
-	}
-	const std::string& CConfigManager::GetConfigParameter(EConfigParameters param) const
-	{
-		if(param == CONFIG_PARAM_LOG_DIR)
-			return m_LogDirParam;
-		else if(param == CONFIG_PARAM_SAVES_DIR)
-			return m_SavesDirParam;
-		else if(param == CONFIG_PARAM_KEYMAP_DIR)
-			return m_KeyMapDirParam;
-		else if(param == CONFIG_PARAM_KEYMAP_FILENAME)
-			return m_KeyMapFileNameParam;
-		return "";
-	}
-	CConfigManager::~CConfigManager()
-	{
-	}
-	void CConfigManager::ReadKeyMapConfig()
-	{
-		std::ifstream cfile(m_KeyMapFileNameParam);
-		if(!cfile.is_open())
-			MessageBox(NULL, L"Error open keymap file!", L"Error", MB_OK);
+			MessageBox(NULL, L"Error open cfg file!", L"Error", MB_OK);
+			return false;
+		}
 
-		//.....
+		while(m_InFile.get() != '=');	std::getline(m_InFile, m_FrameworkWidth);
+		while(m_InFile.get() != '=');	std::getline(m_InFile, m_FrameworkHeight);
+		while(m_InFile.get() != '=');	std::getline(m_InFile, m_FrameworkFullscreen);
 
-		cfile.close();
+		m_InFile.close();
+
+		return true;
+	}
+	bool CConfig::GetValue(EConfigParameters param, std::string& target)
+	{
+		if(param == EConfigParameters::CP_WINDOW_WIDTH && m_FrameworkWidth != "")
+		{
+			target = m_FrameworkWidth;
+			return true;
+		}
+		else if(param == EConfigParameters::CP_WINDOW_HEIGHT && m_FrameworkHeight != "")
+		{
+			target = m_FrameworkHeight;
+			return true;
+		}
+		else if(param == EConfigParameters::CP_FULLSCREEN && m_FrameworkFullscreen != "")
+		{
+			target = m_FrameworkFullscreen;
+			return true;
+		}
+		return false;
+	}
+	CConfig::~CConfig()
+	{
 	}
 }

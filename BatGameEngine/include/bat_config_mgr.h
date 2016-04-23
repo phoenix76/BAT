@@ -1,7 +1,8 @@
 #ifndef _BAT_CONFIG_MGR_H_
 #define _BAT_CONFIG_MGR_H_
 
-#include "bat_platform.h"
+#include <bat_platform.h>
+#include <bat_types.h>
 
 #include <string>
 #include <fstream>
@@ -10,26 +11,31 @@ namespace BAT
 {
 	enum EConfigParameters
 	{
-		CONFIG_PARAM_LOG_DIR = 0,
-		CONFIG_PARAM_SAVES_DIR = 1,
-		CONFIG_PARAM_KEYMAP_DIR = 2,
-
-		CONFIG_PARAM_KEYMAP_FILENAME,
+		CP_WINDOW_WIDTH			= 0,
+		CP_WINDOW_HEIGHT		= 1,
+		CP_FULLSCREEN			= 2,
 	};
-	class CConfigManager
+	class CConfig
 	{
 	public:
-		CConfigManager();
-		const std::string& GetConfigParameter(EConfigParameters param) const;
-		void ReadKeyMapConfig();
-		~CConfigManager();
+		CConfig();
+
+		bool Initialize();
+
+		bool GetValue(EConfigParameters param, std::string& target);
+
+		void RewriteConfigFile();
+
+		~CConfig();
 
 	private:
-		std::string m_LogDirParam;
-		std::string m_SavesDirParam;
+		std::ifstream m_InFile;
+		std::ofstream m_OutFile;
 
-		std::string m_KeyMapDirParam;
-		std::string m_KeyMapFileNameParam;
+		std::string m_FrameworkWidth = "";
+		std::string m_FrameworkHeight = "";
+		std::string m_FrameworkFullscreen = "";
+
 	};
 }
 

@@ -32,6 +32,10 @@ namespace BAT
 
 		void ChangeCursor(HCURSOR newCursor);
 
+		void ShowAppCursor();
+
+		void HideAppCursor();
+
 		HWND& GetHWND();
 
 		uint8 GetWidth() const;
@@ -42,6 +46,10 @@ namespace BAT
 		POINT GetMouseCoordinates() const;
 
 		LRESULT CALLBACK MessageHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+
+		void SystemAlert(const wchar_t*, const wchar_t*);
+
+		void Stop();
 
 		void Shutdown();
 

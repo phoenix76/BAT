@@ -1,69 +1,78 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Utils">
-      <UniqueIdentifier>{43df5434-2698-43f2-b83f-05d63fb63464}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core">
-      <UniqueIdentifier>{57033166-5162-402e-bb42-636dccd392ac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FileSystem">
-      <UniqueIdentifier>{fc18e7ef-b352-4b79-8d6d-9e7ddf3bdd92}</UniqueIdentifier>
-    </Filter>
     <Filter Include="test">
       <UniqueIdentifier>{20e0a7b3-764f-48d2-9b92-1f8be11ba622}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Window">
+    <Filter Include="Engine API">
+      <UniqueIdentifier>{f6269435-587c-4c44-8cce-a6e16002da3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine API\Core">
+      <UniqueIdentifier>{57033166-5162-402e-bb42-636dccd392ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine API\FileSystem">
+      <UniqueIdentifier>{fc18e7ef-b352-4b79-8d6d-9e7ddf3bdd92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine API\Input">
+      <UniqueIdentifier>{1c221396-708a-47f3-9d99-3425482b6154}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine API\Utils">
+      <UniqueIdentifier>{43df5434-2698-43f2-b83f-05d63fb63464}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine API\Window">
       <UniqueIdentifier>{94f3ab12-eedb-4c51-87c0-79426eddf117}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\bat_singleton.h">
-      <Filter>Core</Filter>
+      <Filter>Engine API\Core</Filter>
     </ClInclude>
     <ClInclude Include="include\bat_memory.h">
-      <Filter>Utils</Filter>
+      <Filter>Engine API\Utils</Filter>
     </ClInclude>
     <ClInclude Include="include\bat_log_mgr.h">
-      <Filter>Utils</Filter>
+      <Filter>Engine API\Utils</Filter>
     </ClInclude>
     <ClInclude Include="include\bat_other_utils.h">
-      <Filter>Utils</Filter>
+      <Filter>Engine API\Utils</Filter>
     </ClInclude>
     <ClInclude Include="include\bat_types.h">
-      <Filter>Utils</Filter>
+      <Filter>Engine API\Utils</Filter>
     </ClInclude>
     <ClInclude Include="include\bat_interfaces.h">
-      <Filter>Core</Filter>
+      <Filter>Engine API\Core</Filter>
     </ClInclude>
     <ClInclude Include="include\bat_platform.h">
-      <Filter>Core</Filter>
+      <Filter>Engine API\Core</Filter>
     </ClInclude>
     <ClInclude Include="include\bat_config_mgr.h">
-      <Filter>Utils</Filter>
+      <Filter>Engine API\Utils</Filter>
     </ClInclude>
     <ClInclude Include="include\bat_engine.h">
-      <Filter>Core</Filter>
+      <Filter>Engine API\Core</Filter>
     </ClInclude>
     <ClInclude Include="include\bat_window_api.h">
-      <Filter>Window</Filter>
+      <Filter>Engine API\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="include\bat_input_mgr.h">
+      <Filter>Engine API\Input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\bat_log_mgr.cpp">
-      <Filter>Utils</Filter>
+      <Filter>Engine API\Utils</Filter>
     </ClCompile>
     <ClCompile Include="source\main.cpp">
       <Filter>test</Filter>
     </ClCompile>
     <ClCompile Include="source\bat_config_mgr.cpp">
-      <Filter>Utils</Filter>
+      <Filter>Engine API\Utils</Filter>
     </ClCompile>
     <ClCompile Include="source\bat_engine.cpp">
-      <Filter>Core</Filter>
+      <Filter>Engine API\Core</Filter>
     </ClCompile>
     <ClCompile Include="source\bat_window_api.cpp">
-      <Filter>Window</Filter>
+      <Filter>Engine API\Window</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

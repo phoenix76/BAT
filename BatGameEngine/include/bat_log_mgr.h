@@ -84,24 +84,22 @@ namespace BAT
 		std::string _filePath;
 	};
 
-	class CLogManager
+	class CLogger
 	{
 	public:
-		//Создает лог по умолчанию "system_log.txt"
-		CLogManager();
+		CLogger();
 
-		//Добавляет и открывает файл для логирования
 		void AddLogChannel(const std::string& channelName, const std::string& logFilename);
 
-		void LogToChannel(const std::string& channelName, const std::string& i);
+		void RLog(const std::string& channelName, const std::string& i);
 
-		void DebugLogToChannel(const std::string& channelName, const std::string& i);
+		void DebugLog(const std::string& channelName, const std::string& i);
 
-		void LogToChannel(const std::string& channelName, const char* i, ...);
+		void RLog(const std::string& channelName, const char* i, ...);
 
-		void DebugLogToChannel(const std::string& channelName, const char* i, ...);
+		void DebugLog(const std::string& channelName, const char* i, ...);
 
-		~CLogManager();
+		~CLogger();
 
 	private:
 		std::string m_FilePath;
