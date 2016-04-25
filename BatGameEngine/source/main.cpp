@@ -1,10 +1,11 @@
 #include <bat_engine.h>
 
+#include <dinput.h>
 #include <iostream>
 
 int WINAPI WinMain(HINSTANCE hinst, HINSTANCE hpinst, LPSTR lp, int n)
 {
-	BAT::CBatCore core;
+	BAT::IEngine core;
 	bool result = false;
 	result = core.InitializeWithConfigFile();
 	if(result)
@@ -13,7 +14,10 @@ int WINAPI WinMain(HINSTANCE hinst, HINSTANCE hpinst, LPSTR lp, int n)
 		{
 			MSG temp;
 			temp = core.Window()->ProcessMessage();
-			if(temp.message == WM_MBUTTONUP)
+			core.Input()->UpdateInput();
+			if(core.Input()->GetKeyState(DIK_F))
+				core.Window()->SystemAlert(L"DINPUT", L"MESSAGE");
+			/*if(temp.message == WM_MBUTTONUP)
 				core.Window()->HideAppCursor();
 			if(temp.message == WM_RBUTTONUP)
 				core.Window()->ShowAppCursor();
@@ -22,9 +26,9 @@ int WINAPI WinMain(HINSTANCE hinst, HINSTANCE hpinst, LPSTR lp, int n)
 			if(temp.message == WM_KEYUP && temp.wParam != VK_ESCAPE)
 				core.Window()->SystemAlert(L"KEYUP", L"System Alert");
 			if(temp.message == WM_KEYUP && temp.wParam == VK_ESCAPE)
-				core.Window()->Stop();
+				core.Window()->Stop();*/
 		}
-		core.Window()->Shutdown();
+		core.ShutdownEngine();
 	}
 	return 0;
 }

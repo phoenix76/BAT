@@ -15,10 +15,10 @@ namespace BAT
 		CP_WINDOW_HEIGHT		= 1,
 		CP_FULLSCREEN			= 2,
 	};
-	class CConfig
+	class CConfigManager
 	{
 	public:
-		CConfig();
+		CConfigManager();
 
 		bool Initialize();
 
@@ -26,7 +26,7 @@ namespace BAT
 
 		void RewriteConfigFile();
 
-		~CConfig();
+		~CConfigManager();
 
 	private:
 		std::ifstream m_InFile;

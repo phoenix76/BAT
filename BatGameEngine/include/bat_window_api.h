@@ -1,5 +1,5 @@
-#ifndef _WINDOW_INTERFACE_H_
-#define _WINDOW_INTERFACE_H_
+#ifndef _BAT_WINDOW_API_H_
+#define _BAT_WINDOW_API_H_
 
 #include <Windows.h>
 #include <string>
@@ -18,10 +18,10 @@ namespace BAT
 		WC_CREATE_WINDOW_WITH_USER_SETTINGS
 	};
 
-	class CWindow
+	class CWindowManager
 	{
 	public:
-		CWindow();
+		CWindowManager();
 		/*Устанавливает заголовок окна, курсор, разрешение, опционально ширина и высота, если указана пользовательская конфигурация*/
 		bool InitializeWindow(const std::wstring& windowName, HCURSOR cursor, ECreateWindowConfiguration config, uint32 width = 0U, uint32 height = 0U);
 
@@ -37,6 +37,7 @@ namespace BAT
 		void HideAppCursor();
 
 		HWND& GetHWND();
+		HINSTANCE& GetInstance();
 
 		uint8 GetWidth() const;
 		uint8 GetHeight() const;
@@ -83,7 +84,7 @@ namespace BAT
 		RECT m_WindowRect;
 	};
 
-	static CWindow* pWindow;
+	static CWindowManager* pWindow;
 	static LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 }
 

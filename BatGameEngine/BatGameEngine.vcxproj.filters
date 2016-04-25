@@ -22,6 +22,12 @@
     <Filter Include="Engine API\Window">
       <UniqueIdentifier>{94f3ab12-eedb-4c51-87c0-79426eddf117}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{b93ec2d8-c0e0-401a-bcad-ff89613d6a8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{5524bb6b-c0eb-4db8-a782-aab61d097e35}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\bat_singleton.h">
@@ -57,6 +63,12 @@
     <ClInclude Include="include\bat_input_mgr.h">
       <Filter>Engine API\Input</Filter>
     </ClInclude>
+    <ClInclude Include="include\bat_graphics_mgr.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\bat_sound_mgr.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\bat_log_mgr.cpp">
@@ -73,6 +85,9 @@
     </ClCompile>
     <ClCompile Include="source\bat_window_api.cpp">
       <Filter>Engine API\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="source\bat_input_mgr.cpp">
+      <Filter>Engine API\Input</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

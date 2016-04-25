@@ -84,10 +84,10 @@ namespace BAT
 		std::string _filePath;
 	};
 
-	class CLogger
+	class CLogManager
 	{
 	public:
-		CLogger();
+		CLogManager();
 
 		void AddLogChannel(const std::string& channelName, const std::string& logFilename);
 
@@ -99,7 +99,7 @@ namespace BAT
 
 		void DebugLog(const std::string& channelName, const char* i, ...);
 
-		~CLogger();
+		~CLogManager();
 
 	private:
 		std::string m_FilePath;

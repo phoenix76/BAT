@@ -1,44 +1,262 @@
-START SESSION AT 24.03.2016 | 02:16:22
+START SESSION AT 24.03.2016 | 16:09:53
 
 
-24.03.2016 | 02:16:22-> engine class 1.000000
-24.03.2016 | 02:16:22-> Config init succeded
-24.03.2016 | 02:16:23-> Window init succeded
+24.03.2016 | 16:09:53-> engine class 1.000000
+24.03.2016 | 16:09:53-> Config init succeded
+24.03.2016 | 16:09:54-> Window init succeded
 
 
-END SESSION AT 24.03.2016 | 02:16:32
+END SESSION AT 24.03.2016 | 16:10:00
 --------------------------------------------------------------------
 
-START SESSION AT 24.03.2016 | 02:29:42
+START SESSION AT 24.03.2016 | 16:26:00
 
 
-24.03.2016 | 02:29:42-> engine class 1.000000
-24.03.2016 | 02:29:42-> Config init succeded
-24.03.2016 | 02:29:43-> Window init succeded
+24.03.2016 | 16:26:00-> engine class 1.000000
+24.03.2016 | 16:26:00-> Config init succeded
+24.03.2016 | 16:26:01-> Window init succeded
 
 
-END SESSION AT 24.03.2016 | 02:29:45
+END SESSION AT 24.03.2016 | 16:26:24
 --------------------------------------------------------------------
 
-START SESSION AT 24.03.2016 | 02:30:16
+START SESSION AT 24.03.2016 | 16:26:29
 
 
-24.03.2016 | 02:30:16-> engine class 1.000000
-24.03.2016 | 02:30:16-> Config init succeded
-24.03.2016 | 02:30:16-> Window init succeded
+24.03.2016 | 16:26:29-> engine class 1.000000
+24.03.2016 | 16:26:29-> Config init succeded
+24.03.2016 | 16:26:29-> Window init succeded
 
 
-END SESSION AT 24.03.2016 | 02:30:30
+END SESSION AT 24.03.2016 | 16:26:36
 --------------------------------------------------------------------
 
-START SESSION AT 24.03.2016 | 02:30:36
+START SESSION AT 24.03.2016 | 16:26:51
 
 
-24.03.2016 | 02:30:36-> engine class 1.000000
-24.03.2016 | 02:30:36-> Config init succeded
-24.03.2016 | 02:30:36-> Window init succeded
+24.03.2016 | 16:26:51-> engine class 1.000000
+24.03.2016 | 16:26:51-> Config init succeded
+24.03.2016 | 16:26:52-> Window init succeded
 
 
-END SESSION AT 24.03.2016 | 02:30:54
+END SESSION AT 24.03.2016 | 16:26:53
+--------------------------------------------------------------------
+
+START SESSION AT 24.03.2016 | 16:40:56
+
+
+24.03.2016 | 16:40:56-> engine class 1.000000
+24.03.2016 | 16:40:56-> Config init succeded
+24.03.2016 | 16:40:56-> Window init succeded
+
+
+END SESSION AT 24.03.2016 | 16:40:57
+--------------------------------------------------------------------
+
+START SESSION AT 24.03.2016 | 17:48:02
+
+
+24.03.2016 | 17:48:02-> engine class 1.000000
+24.03.2016 | 17:48:02-> Config init succeded
+24.03.2016 | 17:48:02-> Window init succeded
+
+
+END SESSION AT 24.03.2016 | 17:49:47
+--------------------------------------------------------------------
+
+START SESSION AT 24.03.2016 | 17:50:35
+
+
+24.03.2016 | 17:50:35-> engine class 1.000000
+24.03.2016 | 17:50:35-> Config init succeded
+24.03.2016 | 17:50:35-> Window init succeded
+
+
+END SESSION AT 24.03.2016 | 17:50:47
+--------------------------------------------------------------------
+
+START SESSION AT 24.03.2016 | 19:08:25
+
+
+24.03.2016 | 19:08:25-> engine class 1.000000
+24.03.2016 | 19:08:25-> Config init succeded
+24.03.2016 | 19:08:25-> Window init succeded
+24.03.2016 | 19:08:25-> Error input init
+
+
+END SESSION AT 24.03.2016 | 19:08:25
+--------------------------------------------------------------------
+
+START SESSION AT 24.03.2016 | 19:10:04
+
+
+24.03.2016 | 19:10:04-> engine class 1.000000
+24.03.2016 | 19:10:04-> Config init succeded
+24.03.2016 | 19:10:05-> Window init succeded
+24.03.2016 | 19:10:07-> Error input init
+
+
+END SESSION AT 24.03.2016 | 19:10:07
+--------------------------------------------------------------------
+
+START SESSION AT 24.03.2016 | 19:11:16
+
+
+24.03.2016 | 19:11:16-> engine class 1.000000
+24.03.2016 | 19:11:16-> Config init succeded
+24.03.2016 | 19:11:16-> Window init succeded
+24.03.2016 | 19:11:19-> Error input init
+
+
+END SESSION AT 24.03.2016 | 19:11:19
+--------------------------------------------------------------------
+
+START SESSION AT 24.03.2016 | 19:11:48
+
+
+24.03.2016 | 19:11:48-> engine class 1.000000
+24.03.2016 | 19:11:48-> Config init succeded
+24.03.2016 | 19:11:48-> Window init succeded
+24.03.2016 | 19:11:50-> Error input init
+
+
+END SESSION AT 24.03.2016 | 19:11:50
+--------------------------------------------------------------------
+
+START SESSION AT 24.03.2016 | 19:15:36
+
+
+24.03.2016 | 19:15:36-> engine class 1.000000
+24.03.2016 | 19:15:36-> Config init succeded
+24.03.2016 | 19:15:37-> Window init succeded
+24.03.2016 | 19:15:38-> Error input init
+
+
+END SESSION AT 24.03.2016 | 19:15:38
+--------------------------------------------------------------------
+
+START SESSION AT 24.03.2016 | 19:15:59
+
+
+24.03.2016 | 19:15:59-> engine class 1.000000
+24.03.2016 | 19:15:59-> Config init succeded
+24.03.2016 | 19:15:59-> Window init succeded
+24.03.2016 | 19:16:01-> Error input init
+
+
+END SESSION AT 24.03.2016 | 19:16:01
+--------------------------------------------------------------------
+
+START SESSION AT 24.03.2016 | 19:16:13
+
+
+24.03.2016 | 19:16:13-> engine class 1.000000
+24.03.2016 | 19:16:13-> Config init succeded
+24.03.2016 | 19:16:13-> Window init succeded
+24.03.2016 | 19:16:15-> Error input init
+
+
+END SESSION AT 24.03.2016 | 19:16:15
+--------------------------------------------------------------------
+
+START SESSION AT 24.03.2016 | 19:24:33
+
+
+24.03.2016 | 19:24:33-> engine class 1.000000
+24.03.2016 | 19:24:33-> Config init succeded
+24.03.2016 | 19:24:33-> Window init succeded
+24.03.2016 | 19:24:39-> Error input init
+
+
+END SESSION AT 24.03.2016 | 19:24:39
+--------------------------------------------------------------------
+
+START SESSION AT 24.03.2016 | 21:17:45
+
+
+24.03.2016 | 21:17:45-> engine class 1.000000
+24.03.2016 | 21:17:45-> Config init succeded
+24.03.2016 | 21:17:45-> Window init succeded
+24.03.2016 | 21:17:45-> Input init succeded
+START SESSION AT 24.03.2016 | 21:18:13
+
+
+24.03.2016 | 21:18:13-> engine class 1.000000
+24.03.2016 | 21:18:13-> Config init succeded
+24.03.2016 | 21:18:13-> Window init succeded
+24.03.2016 | 21:18:13-> Input init succeded
+START SESSION AT 24.03.2016 | 21:19:04
+
+
+24.03.2016 | 21:19:04-> engine class 1.000000
+24.03.2016 | 21:19:04-> Config init succeded
+24.03.2016 | 21:19:04-> Window init succeded
+24.03.2016 | 21:19:04-> Input init succeded
+START SESSION AT 25.03.2016 | 01:32:56
+
+
+25.03.2016 | 01:32:56-> engine class 1.000000
+25.03.2016 | 01:32:56-> Config init succeded
+25.03.2016 | 01:32:56-> Window init succeded
+25.03.2016 | 01:32:56-> Input init succeded
+START SESSION AT 25.03.2016 | 01:35:55
+
+
+25.03.2016 | 01:35:55-> engine class 1.000000
+25.03.2016 | 01:35:55-> Config init succeded
+25.03.2016 | 01:35:55-> Window init succeded
+25.03.2016 | 01:35:55-> Input init succeded
+START SESSION AT 25.03.2016 | 01:36:40
+
+
+25.03.2016 | 01:36:40-> engine class 1.000000
+25.03.2016 | 01:36:40-> Config init succeded
+25.03.2016 | 01:36:40-> Window init succeded
+25.03.2016 | 01:36:40-> Input init succeded
+START SESSION AT 25.03.2016 | 01:37:25
+
+
+25.03.2016 | 01:37:25-> engine class 1.000000
+25.03.2016 | 01:37:25-> Config init succeded
+25.03.2016 | 01:37:25-> Window init succeded
+25.03.2016 | 01:37:25-> Input init succeded
+START SESSION AT 25.03.2016 | 23:46:42
+
+
+25.03.2016 | 23:46:42-> engine class 1.000000
+25.03.2016 | 23:46:42-> Config init succeded
+25.03.2016 | 23:46:42-> Window init succeded
+25.03.2016 | 23:46:42-> Input init succeded
+START SESSION AT 25.03.2016 | 23:47:41
+
+
+25.03.2016 | 23:47:41-> engine class 1.000000
+25.03.2016 | 23:47:41-> Config init succeded
+25.03.2016 | 23:47:41-> Window init succeded
+25.03.2016 | 23:47:41-> Input init succeded
+START SESSION AT 25.03.2016 | 23:51:17
+
+
+25.03.2016 | 23:51:17-> engine class 1.000000
+25.03.2016 | 23:51:17-> Config init succeded
+25.03.2016 | 23:51:17-> Window init succeded
+25.03.2016 | 23:51:17-> Input init succeded
+START SESSION AT 25.03.2016 | 23:53:28
+
+
+25.03.2016 | 23:53:28-> engine class 1.000000
+25.03.2016 | 23:53:28-> Config init succeded
+25.03.2016 | 23:53:28-> Window init succeded
+25.03.2016 | 23:53:28-> Input init succeded
+START SESSION AT 25.03.2016 | 23:53:44
+
+
+25.03.2016 | 23:53:44-> engine class 1.000000
+25.03.2016 | 23:53:44-> Config init succeded
+25.03.2016 | 23:53:44-> Window init succeded
+25.03.2016 | 23:53:57-> Error input init
+
+
+END SESSION AT 25.03.2016 | 23:54:02
 --------------------------------------------------------------------
 

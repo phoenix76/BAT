@@ -2,8 +2,8 @@
 
 namespace BAT
 {
-	CWindow::CWindow() { pWindow = this; }
-	bool CWindow::InitializeWindow(const std::wstring& windowName, HCURSOR cursor, ECreateWindowConfiguration config, uint32 width, uint32 height)
+	CWindowManager::CWindowManager() { pWindow = this; }
+	bool CWindowManager::InitializeWindow(const std::wstring& windowName, HCURSOR cursor, ECreateWindowConfiguration config, uint32 width, uint32 height)
 	{
 		m_HInstance = GetModuleHandle(NULL);
 		m_ClassName = windowName;
@@ -50,7 +50,7 @@ namespace BAT
 		return true;
 	}
 	
-	MSG CWindow::ProcessMessage()
+	MSG CWindowManager::ProcessMessage()
 	{
 		MSG msg;
 		if(PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
@@ -61,34 +61,35 @@ namespace BAT
 		}
 		return msg;
 	}
-	bool CWindow::IsRun() const
+	bool CWindowManager::IsRun() const
 	{
 		return m_IsRunWindow;
 	}
-	void CWindow::ChangeCursor(HCURSOR cursor)
+	void CWindowManager::ChangeCursor(HCURSOR cursor)
 	{
 		m_HCursor = cursor;
 		SetCursor(m_HCursor);
 	}
 
-	void CWindow::ShowAppCursor()
+	void CWindowManager::ShowAppCursor()
 	{
 		while(ShowCursor(TRUE) < 0);
 		m_VisibleCursor = true;
 	}
-	void CWindow::HideAppCursor()
+	void CWindowManager::HideAppCursor()
 	{
 		while(ShowCursor(FALSE) >= 0);
 		m_VisibleCursor = false;
 	}
 
-	HWND& CWindow::GetHWND()			{ return m_HWnd; }
-	uint8 CWindow::GetWidth() const		{ return m_WindowWidth; }
-	uint8 CWindow::GetHeight() const	{ return m_WindowHeight; }
-	uint8 CWindow::GetXPos() const		{ return m_WindowPosX; }
-	uint8 CWindow::GetYPos() const		{ return m_WindowPosY; }
+	HWND& CWindowManager::GetHWND()				{ return m_HWnd; }
+	HINSTANCE& CWindowManager::GetInstance()	{ return m_HInstance; }
+	uint8 CWindowManager::GetWidth() const		{ return m_WindowWidth; }
+	uint8 CWindowManager::GetHeight() const		{ return m_WindowHeight; }
+	uint8 CWindowManager::GetXPos() const		{ return m_WindowPosX; }
+	uint8 CWindowManager::GetYPos() const		{ return m_WindowPosY; }
 
-	POINT CWindow::GetMouseCoordinates() const
+	POINT CWindowManager::GetMouseCoordinates() const
 	{
 		POINT pt;
 		pt.x = m_CurPosX;
@@ -96,12 +97,12 @@ namespace BAT
 		return pt;
 	}
 
-	void CWindow::SystemAlert(const wchar_t* msg, const wchar_t* head)
+	void CWindowManager::SystemAlert(const wchar_t* msg, const wchar_t* head)
 	{
 		MessageBox(NULL, msg, head, MB_OK);
 	}
 
-	LRESULT CALLBACK CWindow::MessageHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+	LRESULT CALLBACK CWindowManager::MessageHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	{
 		switch(msg)
 		{
@@ -127,11 +128,11 @@ namespace BAT
 		}
 		
 	}
-	void CWindow::Stop()
+	void CWindowManager::Stop()
 	{
 		m_IsRunWindow = false;
 	}
-	void CWindow::Shutdown()
+	void CWindowManager::Shutdown()
 	{
 		PostQuitMessage(0);
 		if(m_Fullscreen)
@@ -139,7 +140,7 @@ namespace BAT
 		DestroyWindow(m_HWnd);
 		UnregisterClass(m_ClassName.c_str(), m_HInstance);
 	}
-	HRESULT CWindow::m_RegisterWindowClass()
+	HRESULT CWindowManager::m_RegisterWindowClass()
 	{
 		WNDCLASSEX wc;
 		ZeroMemory(&wc, sizeof(wc));
@@ -158,7 +159,7 @@ namespace BAT
 			return E_FAIL;
 		return S_OK;
 	}
-	HRESULT CWindow::m_CreateAppWindow()
+	HRESULT CWindowManager::m_CreateAppWindow()
 	{
 		if(m_Fullscreen)
 		{
@@ -175,7 +176,7 @@ namespace BAT
 			if(m_HWnd)
 			{
 				ShowWindow(m_HWnd, SW_SHOW);
-				SetForegroundWindow(m_HWnd);
+				//SetForegroundWindow(m_HWnd);
 				SetFocus(m_HWnd);
 				m_IsRunWindow = true;
 				GetWindowRect(m_HWnd, &m_WindowRect);
@@ -191,7 +192,7 @@ namespace BAT
 			if(m_HWnd)
 			{
 				ShowWindow(m_HWnd, SW_SHOW);
-				SetForegroundWindow(m_HWnd);
+				//SetForegroundWindow(m_HWnd);
 				SetFocus(m_HWnd);
 				m_IsRunWindow = true;
 				GetWindowRect(m_HWnd, &m_WindowRect);
@@ -202,7 +203,7 @@ namespace BAT
 		}
 		return E_FAIL;
 	}
-	void CWindow::m_UpdateCursorCoordinates()
+	void CWindowManager::m_UpdateCursorCoordinates()
 	{
 		POINT pt;
 		GetCursorPos(&pt);

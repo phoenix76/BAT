@@ -5,10 +5,10 @@
 namespace BAT
 {
 
-	CConfig::CConfig()
+	CConfigManager::CConfigManager()
 	{
 	}
-	bool CConfig::Initialize()
+	bool CConfigManager::Initialize()
 	{
 		std::ifstream m_InFile("config.txt");
 		if(!m_InFile.is_open())
@@ -25,7 +25,7 @@ namespace BAT
 
 		return true;
 	}
-	bool CConfig::GetValue(EConfigParameters param, std::string& target)
+	bool CConfigManager::GetValue(EConfigParameters param, std::string& target)
 	{
 		if(param == EConfigParameters::CP_WINDOW_WIDTH && m_FrameworkWidth != "")
 		{
@@ -44,7 +44,21 @@ namespace BAT
 		}
 		return false;
 	}
-	CConfig::~CConfig()
+	void CConfigManager::RewriteConfigFile()
+	{
+		m_OutFile.open("config.txt");
+		if(m_OutFile.is_open())
+		{
+			m_OutFile << "Window width=" << m_FrameworkWidth << '\n';
+			m_OutFile << "Window height=" << m_FrameworkHeight << '\n';
+			m_OutFile << "Window Fullscreen=" << m_FrameworkFullscreen << '\n';
+
+			m_OutFile.close();
+		}
+		else
+			MessageBox(NULL, L"Error open config file for rewrite!", L"Error", MB_OK);
+	}
+	CConfigManager::~CConfigManager()
 	{
 	}
 }

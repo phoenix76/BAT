@@ -8,23 +8,37 @@
 #include <bat_memory.h>
 #include <bat_window_api.h>
 #include <bat_config_mgr.h>
+#include <bat_input_mgr.h>
+#include <bat_graphics_mgr.h>
+#include <bat_sound_mgr.h>
 
 namespace BAT
 {
 
-	class CBatCore
+	class IEngine
 	{
 	public:
-		CBatCore();
+		IEngine();
+
 		bool InitializeWithConfigFile();
-		CWindow* Window();
-		CLogger* Log();
+
+		void ShutdownEngine();
+
+		CWindowManager* Window();
+		CLogManager* Log();
+		CConfigManager* Config();
+		CInputManager* Input();
 
 	private:
+		bool m_WindowInitializeWithConfig();
+		bool m_InputIntialize();
 
-		CConfig* m_pConfig;
-		CLogger* m_pLog;
-		CWindow* m_pWindow;
+		CConfigManager*		m_pConfig;
+		CLogManager*		m_pLog;
+		CWindowManager*		m_pWindow;
+		CInputManager*		m_pInput;
+		CGraphicsManager*	m_pGraphics;
+		CSoundManager*		m_pSound;
 	};
 
 }

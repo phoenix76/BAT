@@ -7,12 +7,12 @@
 
 namespace BAT
 {
-	CLogger::CLogger()
+	CLogManager::CLogManager()
 	{
 		m_FilePath = "logs/";
 		m_LogChannelsList.push_back(SLogChannel("base_system_log.txt", "system", m_FilePath));
 	}
-	void CLogger::AddLogChannel(const std::string& channelName, const std::string& logFilename)
+	void CLogManager::AddLogChannel(const std::string& channelName, const std::string& logFilename)
 	{
 		for(auto it = m_LogChannelsList.begin(); it != m_LogChannelsList.end(); it++)
 		{
@@ -21,7 +21,7 @@ namespace BAT
 		}
 		m_LogChannelsList.push_back(SLogChannel(logFilename, channelName, m_FilePath));
 	} 
-	void CLogger::RLog(const std::string& channelName, const std::string& i)
+	void CLogManager::RLog(const std::string& channelName, const std::string& i)
 	{
 		for(auto it = m_LogChannelsList.begin(); it != m_LogChannelsList.end(); it++)
 		{
@@ -33,7 +33,7 @@ namespace BAT
 			}
 		}
 	}
-	void CLogger::DebugLog(const std::string& channelName, const std::string& i)
+	void CLogManager::DebugLog(const std::string& channelName, const std::string& i)
 	{
 #ifdef _DEBUG
 		for(auto it = m_LogChannelsList.begin(); it != m_LogChannelsList.end(); it++)
@@ -47,7 +47,7 @@ namespace BAT
 		}
 #endif
 	}
-	void CLogger::RLog(const std::string& channelName, const char* msg, ...)
+	void CLogManager::RLog(const std::string& channelName, const char* msg, ...)
 	{
 		for(auto it = m_LogChannelsList.begin(); it != m_LogChannelsList.end(); it++)
 		{	
@@ -66,7 +66,7 @@ namespace BAT
 			}
 		}	
 	}
-	void CLogger::DebugLog(const std::string& channelName, const char* msg, ...)
+	void CLogManager::DebugLog(const std::string& channelName, const char* msg, ...)
 	{
 #ifdef _DEBUG
 		for(auto it = m_LogChannelsList.begin(); it != m_LogChannelsList.end(); it++)
@@ -87,7 +87,7 @@ namespace BAT
 		}
 #endif
 	}
-	CLogger::~CLogger()
+	CLogManager::~CLogManager()
 	{
 		for(auto it = m_LogChannelsList.begin(); it != m_LogChannelsList.end(); it++)
 			it->Destroy();
