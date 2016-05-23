@@ -3,7 +3,7 @@
 
 namespace BAT
 {
-	bool CInputManager::InitializeInputSystem(HWND& hWnd, HINSTANCE& hInstance)
+	bool CInputManager::InitializeInputSystem(HWND hWnd, HINSTANCE hInstance)
 	{
 		HRESULT result;
 		result = DirectInput8Create(GetModuleHandle(NULL), DIRECTINPUT_VERSION, IID_IDirectInput8, (void**)&m_pDIInterface, NULL);
@@ -20,46 +20,51 @@ namespace BAT
 
 		return true;
 	}
-	void CInputManager::UpdateInput()
+	void CInputManager::UpdateInput(int32 x, int32 y)
 	{
-		HRESULT result;
-		unsigned char keys[256];
 		m_pKeyboard->Poll();
-		result = m_pKeyboard->GetDeviceState(sizeof(keys), (LPVOID)&m_keys);
+		m_pKeyboard->GetDeviceState(sizeof(m_Keys), (LPVOID)&m_Keys);
+		m_pMouse->Poll();
+		m_pMouse->GetDeviceState(sizeof(m_MouseState), (LPVOID)&m_MouseState);
+		m_xCurPos = x;
+		m_yCurPos = y;
 	}
 	bool CInputManager::GetKeyState(DWORD key)
 	{
-		return (m_keys[key] & 0x80) ? true : false;
+		return (m_Keys[key] & 0x80) ? true : false;
+	}
+	bool CInputManager::GetMouseState(EMouseParams param)
+	{
+		return (m_MouseState.rgbButtons[(int)param] & 0x80) ? true : false;
+	}
+	void CInputManager::GetMouseState(EMouseParams param, int32& x, int32& y)
+	{
+		if(param == MP_CURPOS)
+		{
+			x = m_xCurPos;
+			y = m_yCurPos;
+		}
+	}
+	void CInputManager::GetMouseState(EMouseParams param, int32& wheel)
+	{
+		if(param == MP_MWHEEL)
+			wheel = m_MouseState.lZ;
 	}
 	void CInputManager::Shutdown()
 	{
 		m_pKeyboard->Unacquire();
-		//m_pMouse->Unacquire();
-		_RELEASE(m_pKeyboard);
-		//_RELEASE(m_pMouse);
-		_RELEASE(m_pDIInterface);
+		m_pMouse->Unacquire();
+		m_pKeyboard->Release();
+		m_pMouse->Release();
+		m_pDIInterface->Release();
 	}
-	HRESULT CInputManager::m_InitializeKeyboard(HWND& hwnd)
+	HRESULT CInputManager::m_InitializeKeyboard(HWND hwnd)
 	{
-		DIPROPDWORD dipdw;
-		ZeroMemory(&dipdw, sizeof(DIPROPDWORD));
-		dipdw.diph.dwSize = sizeof(DIPROPDWORD);
-		dipdw.diph.dwHeaderSize = sizeof(DIPROPHEADER);
-		dipdw.diph.dwObj = 0;
-		dipdw.diph.dwHow = DIPH_DEVICE;
-		dipdw.dwData = (unsigned long)256;
 
 		HRESULT result;
 		result = m_pDIInterface->CreateDevice(GUID_SysKeyboard, &m_pKeyboard, NULL);
 		if(FAILED(result))
 			return E_FAIL;
-
-		result = m_pKeyboard->SetProperty(DIPROP_BUFFERSIZE, &dipdw.diph);
-		if(FAILED(result))
-		{
-			m_pKeyboard->Release();
-			return E_FAIL;
-		}
 
 		result = m_pKeyboard->SetDataFormat(&c_dfDIKeyboard);
 		if(FAILED(result))
@@ -68,7 +73,7 @@ namespace BAT
 			return E_FAIL;
 		}
 
-		result = m_pKeyboard->SetCooperativeLevel(hwnd, DISCL_BACKGROUND | DISCL_NONEXCLUSIVE);
+		result = m_pKeyboard->SetCooperativeLevel(hwnd, DISCL_NONEXCLUSIVE | DISCL_BACKGROUND);
 		if(FAILED(result))
 		{
 			m_pKeyboard->Release();
@@ -84,31 +89,31 @@ namespace BAT
 		
 		return S_OK;
 	}
-	HRESULT CInputManager::m_InitializeMouse(HWND& hwnd)
+	HRESULT CInputManager::m_InitializeMouse(HWND hwnd)
 	{
 		HRESULT result;
-		result = m_pDIInterface->CreateDevice(GUID_SysMouse, &m_pKeyboard, NULL);
+		result = m_pDIInterface->CreateDevice(GUID_SysMouse, &m_pMouse, NULL);
 		if(FAILED(result))
 			return E_FAIL;
 
-		result = m_pKeyboard->SetDataFormat(&c_dfDIMouse);
+		result = m_pMouse->SetDataFormat(&c_dfDIMouse);
 		if(FAILED(result))
 		{
-			m_pKeyboard->Release();
-			return E_FAIL;
-		}
-
-		result = m_pKeyboard->SetCooperativeLevel(hwnd, DISCL_BACKGROUND | DISCL_NONEXCLUSIVE);
-		if(FAILED(result))
-		{
-			m_pKeyboard->Release();
+			m_pMouse->Release();
 			return E_FAIL;
 		}
 
-		result = m_pKeyboard->Acquire();
+		result = m_pMouse->SetCooperativeLevel(hwnd, DISCL_BACKGROUND | DISCL_NONEXCLUSIVE);
 		if(FAILED(result))
 		{
-			m_pKeyboard->Release();
+			m_pMouse->Release();
+			return E_FAIL;
+		}
+
+		result = m_pMouse->Acquire();
+		if(FAILED(result))
+		{
+			m_pMouse->Release();
 			return E_FAIL;
 		}
 

@@ -84,10 +84,10 @@ namespace BAT
 
 	HWND& CWindowManager::GetHWND()				{ return m_HWnd; }
 	HINSTANCE& CWindowManager::GetInstance()	{ return m_HInstance; }
-	uint8 CWindowManager::GetWidth() const		{ return m_WindowWidth; }
-	uint8 CWindowManager::GetHeight() const		{ return m_WindowHeight; }
-	uint8 CWindowManager::GetXPos() const		{ return m_WindowPosX; }
-	uint8 CWindowManager::GetYPos() const		{ return m_WindowPosY; }
+	uint32 CWindowManager::GetWidth() const		{ return m_WindowWidth; }
+	uint32 CWindowManager::GetHeight() const		{ return m_WindowHeight; }
+	uint32 CWindowManager::GetXPos() const		{ return m_WindowPosX; }
+	uint32 CWindowManager::GetYPos() const		{ return m_WindowPosY; }
 
 	POINT CWindowManager::GetMouseCoordinates() const
 	{
@@ -176,10 +176,13 @@ namespace BAT
 			if(m_HWnd)
 			{
 				ShowWindow(m_HWnd, SW_SHOW);
-				//SetForegroundWindow(m_HWnd);
+				GetWindowRect(m_HWnd, &m_WindowRect);
+				m_WindowPosX = m_WindowRect.left;
+				m_WindowPosY = m_WindowRect.top;
+				SetForegroundWindow(m_HWnd);
 				SetFocus(m_HWnd);
 				m_IsRunWindow = true;
-				GetWindowRect(m_HWnd, &m_WindowRect);
+				SetCursorPos(m_WindowRect.left + 10, m_WindowRect.top + 10);
 				m_UpdateCursorCoordinates();
 				m_VisibleCursor = true;
 				return S_OK;
@@ -192,10 +195,13 @@ namespace BAT
 			if(m_HWnd)
 			{
 				ShowWindow(m_HWnd, SW_SHOW);
-				//SetForegroundWindow(m_HWnd);
+				GetWindowRect(m_HWnd, &m_WindowRect);
+				m_WindowPosX = m_WindowRect.left;
+				m_WindowPosY = m_WindowRect.top;
+				SetForegroundWindow(m_HWnd);
 				SetFocus(m_HWnd);
 				m_IsRunWindow = true;
-				GetWindowRect(m_HWnd, &m_WindowRect);
+				SetCursorPos(m_WindowRect.left + 10, m_WindowRect.top + 10);
 				m_UpdateCursorCoordinates();
 				m_VisibleCursor = true;
 				return S_OK;

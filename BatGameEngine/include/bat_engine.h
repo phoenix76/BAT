@@ -11,6 +11,7 @@
 #include <bat_input_mgr.h>
 #include <bat_graphics_mgr.h>
 #include <bat_sound_mgr.h>
+#include <bat_file_mgr.h>
 
 namespace BAT
 {
@@ -20,7 +21,11 @@ namespace BAT
 	public:
 		IEngine();
 
-		bool InitializeWithConfigFile();
+		bool InitializeEngine();
+
+		void WindowUpdate();
+
+		void InputUpdate();
 
 		void ShutdownEngine();
 
@@ -30,7 +35,7 @@ namespace BAT
 		CInputManager* Input();
 
 	private:
-		bool m_WindowInitializeWithConfig();
+		bool m_WindowInitialize();
 		bool m_InputIntialize();
 
 		CConfigManager*		m_pConfig;
@@ -39,6 +44,7 @@ namespace BAT
 		CInputManager*		m_pInput;
 		CGraphicsManager*	m_pGraphics;
 		CSoundManager*		m_pSound;
+		CFileManager*		m_pFileSystem;
 	};
 
 }

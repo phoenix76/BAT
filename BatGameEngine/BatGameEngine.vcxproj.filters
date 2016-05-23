@@ -22,11 +22,14 @@
     <Filter Include="Engine API\Window">
       <UniqueIdentifier>{94f3ab12-eedb-4c51-87c0-79426eddf117}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Graphics">
-      <UniqueIdentifier>{b93ec2d8-c0e0-401a-bcad-ff89613d6a8a}</UniqueIdentifier>
+    <Filter Include="Engine API\Game">
+      <UniqueIdentifier>{077071d6-d8a2-43d6-88d2-cf2f06e86620}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sound">
+    <Filter Include="Engine API\Sound">
       <UniqueIdentifier>{5524bb6b-c0eb-4db8-a782-aab61d097e35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine API\Graphics">
+      <UniqueIdentifier>{b93ec2d8-c0e0-401a-bcad-ff89613d6a8a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -64,10 +67,16 @@
       <Filter>Engine API\Input</Filter>
     </ClInclude>
     <ClInclude Include="include\bat_graphics_mgr.h">
-      <Filter>Graphics</Filter>
+      <Filter>Engine API\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="include\bat_sound_mgr.h">
-      <Filter>Sound</Filter>
+      <Filter>Engine API\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="include\game_control_system.h">
+      <Filter>Engine API\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="include\bat_file_mgr.h">
+      <Filter>Engine API\FileSystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -88,6 +97,15 @@
     </ClCompile>
     <ClCompile Include="source\bat_input_mgr.cpp">
       <Filter>Engine API\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="source\game_control_system.cpp">
+      <Filter>Engine API\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="source\bat_file_mgr.cpp">
+      <Filter>Engine API\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="source\bat_sound_mgr.cpp">
+      <Filter>Engine API\Sound</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -4,13 +4,13 @@
 namespace BAT
 {
 	IEngine::IEngine() : m_pLog(&(ISingleton<CLogManager>::Instance())), m_pWindow(&(ISingleton<CWindowManager>::Instance())), m_pConfig(&(ISingleton<CConfigManager>::Instance())),
-		m_pInput(&(ISingleton<CInputManager>::Instance())), m_pGraphics(&(ISingleton<CGraphicsManager>::Instance())), m_pSound(&(ISingleton<CSoundManager>::Instance()))
+		m_pInput(&(ISingleton<CInputManager>::Instance())), m_pGraphics(&(ISingleton<CGraphicsManager>::Instance())), m_pSound(&(ISingleton<CSoundManager>::Instance())),
+		m_pFileSystem(&(ISingleton<CFileManager>::Instance()))
 	{
-		m_pLog->RLog("system", "engine class %f", 1.0f);
 	}
-	bool IEngine::InitializeWithConfigFile()
+	bool IEngine::InitializeEngine()
 	{
-
+		
 		//Config init
 		if(m_pConfig->Initialize() == false)
 		{
@@ -20,7 +20,7 @@ namespace BAT
 		m_pLog->DebugLog("system", "Config init succeded");
 
 		//Window init
-		if(!m_WindowInitializeWithConfig())
+		if(!m_WindowInitialize())
 		{
 			m_pLog->RLog("system", "Error create window");
 			return false;
@@ -35,13 +35,32 @@ namespace BAT
 		}
 		m_pLog->DebugLog("system", "Input init succeded");
 
+		//Sound init
+		if(!m_pSound->Initialize(m_pWindow->GetHWND()))
+		{
+			m_pLog->RLog("system", "Sound input init");
+			return false;
+		}
+		m_pLog->DebugLog("system", "Sound init succeded");
+
+		m_pSound->PlayWaveFile();
 		return true;
+	}
+	void IEngine::WindowUpdate()
+	{
+		m_pWindow->ProcessMessage();
+	}
+	void IEngine::InputUpdate()
+	{
+		POINT pt = m_pWindow->GetMouseCoordinates();
+		m_pInput->UpdateInput(pt.x, pt.y);
 	}
 	void IEngine::ShutdownEngine()
 	{
 		m_pWindow->Shutdown();	
 		m_pInput->Shutdown();
 		m_pConfig->RewriteConfigFile();
+		m_pSound->Shutdown();
 	}
 
 	CWindowManager* IEngine::Window()
@@ -61,7 +80,7 @@ namespace BAT
 		return m_pInput;
 	}
 
-	bool IEngine::m_WindowInitializeWithConfig()
+	bool IEngine::m_WindowInitialize()
 	{
 		std::string fullscreen = "";
 		bool result;

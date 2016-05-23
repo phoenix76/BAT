@@ -39,10 +39,10 @@ namespace BAT
 		HWND& GetHWND();
 		HINSTANCE& GetInstance();
 
-		uint8 GetWidth() const;
-		uint8 GetHeight() const;
-		uint8 GetXPos() const;
-		uint8 GetYPos() const;
+		uint32 GetWidth() const;
+		uint32 GetHeight() const;
+		uint32 GetXPos() const;
+		uint32 GetYPos() const;
 
 		POINT GetMouseCoordinates() const;
 

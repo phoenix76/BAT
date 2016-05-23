@@ -46,7 +46,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>D:\Git\BAT\BatGameEngine\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;D:\Git\BAT\BatGameEngine\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -74,7 +75,7 @@
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
@@ -83,6 +84,7 @@
   <ItemGroup>
     <ClInclude Include="include\bat_config_mgr.h" />
     <ClInclude Include="include\bat_engine.h" />
+    <ClInclude Include="include\bat_file_mgr.h" />
     <ClInclude Include="include\bat_graphics_mgr.h" />
     <ClInclude Include="include\bat_input_mgr.h" />
     <ClInclude Include="include\bat_interfaces.h" />
@@ -94,14 +96,18 @@
     <ClInclude Include="include\bat_sound_mgr.h" />
     <ClInclude Include="include\bat_types.h" />
     <ClInclude Include="include\bat_window_api.h" />
+    <ClInclude Include="include\game_control_system.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\bat_config_mgr.cpp" />
     <ClCompile Include="source\bat_engine.cpp" />
+    <ClCompile Include="source\bat_file_mgr.cpp" />
     <ClCompile Include="source\bat_input_mgr.cpp" />
     <ClCompile Include="source\bat_log_mgr.cpp" />
+    <ClCompile Include="source\bat_sound_mgr.cpp" />
     <ClCompile Include="source\bat_window_api.cpp" />
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\game_control_system.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
