@@ -2,8 +2,10 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="include\bat_framework_interface.h" />
+    <ClInclude Include="include\bat_window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\bat_framework_interface.cpp" />
+    <ClCompile Include="source\bat_window.cpp" />
   </ItemGroup>
 </Project>

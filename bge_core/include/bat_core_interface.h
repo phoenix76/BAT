@@ -20,7 +20,7 @@ namespace BAT_ENGINE
 
 			m_Config = new CConfigLoader;
 			
-			BGE_Log("START SESSION AT %s%s", BAT_UTILS::GetTimeStamp().c_str(),
+			BGE_Log("START ENGINE AT %s%s", BAT_UTILS::GetTimeStamp().c_str(),
 				"\n---------------------------------------------------------------\n\n");
 		}
 
@@ -60,7 +60,6 @@ namespace BAT_ENGINE
 				m_Graphics = graph;
 				m_Audio = audio;
 			}
-
 			CFrameworkCore* m_Framework;
 			CAudioCore* m_Audio;
 			CGraphicsCore* m_Graphics;
@@ -72,7 +71,7 @@ namespace BAT_ENGINE
 		{
 			delete m_Config;
 			delete m_QueryInterface;
-			BGE_Log("\n\nEND SESSION AT %s%s", BAT_UTILS::GetTimeStamp().c_str(),
+			BGE_Log("\n\nDESTROY ENGINE AT %s%s", BAT_UTILS::GetTimeStamp().c_str(),
 				"\n---------------------------------------------------------------\n\n\n");
 		}
 

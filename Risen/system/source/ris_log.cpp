@@ -16,6 +16,12 @@ namespace BAT_UTILS
 		}
 		m_LogChannelsList.push_back(SLogChannel(logFilename, channelName, m_FilePath));
 	}
+	
+
+	/*
+	jsjlgslg
+
+	*/
 	void CLogManager::RLog(const std::string& channelName, const char* msg, ...)
 	{
 		for(auto it = m_LogChannelsList.begin(); it != m_LogChannelsList.end(); it++)

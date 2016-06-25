@@ -84,9 +84,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\bat_framework_interface.h" />
+    <ClInclude Include="include\bat_window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\bat_framework_interface.cpp" />
+    <ClCompile Include="source\bat_window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

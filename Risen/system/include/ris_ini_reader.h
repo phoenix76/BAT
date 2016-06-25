@@ -38,6 +38,7 @@ namespace RISEN
 
 	private:
 		void CreateAttributeFromString(SINIAttribute& rstruct, const std::string& data);
+
 		std::string m_Filename;
 		std::vector<SINIAttribute> m_AttrList;
 	};
